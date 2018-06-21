@@ -3,7 +3,7 @@
 var questions = [
     {
       question: "Select the primary color.",
-      answers: {
+      correctAnswer: {
         a: "Yellow",
         b: "Magenta",
         c: "Green",
@@ -13,7 +13,7 @@ var questions = [
     },
     {
       question: "Which famous orphan had curly red hair",
-      answers: {
+      correctAnswer: {
         a: "Oliver Twist",
         b: "Annie",
         c: "Violet Baudelaire",
@@ -23,7 +23,7 @@ var questions = [
     },
     {
       question: "What does M.V.E.M.J.S.U.N.P refer to?",
-      answers: {
+      correctAnswer: {
         a: "The order of operations in arithmetic",
         b: "The preparation steps a driver takes before driving",
         c: "First-aid response steps",
@@ -35,7 +35,7 @@ var questions = [
 
     {
         question: "What is the capital of the largest state in America (hint: largest in size)",
-        answers: {
+        correctAnswer: {
             a: "Sacramento",
             b: "Austin",
             c: "Juneau",
@@ -47,7 +47,7 @@ var questions = [
 
     {
         question: "What disease is the focus of oncology? ",
-        answers: {
+        correctAnswer: {
           a: "Chronic obstructive pulmonary disease (COPD)",
           b: "Cancer",
           c: "Diabetes",
@@ -57,3 +57,41 @@ var questions = [
         
     }    
     ];
+
+    function startQuiz(){
+        
+        var questionOutput = [];
+      
+        // for each question in whole, we want to take in the current question and correctAnswer
+        questions.forEach (
+          (currentQuestion, correctAnswer) => {
+      
+            // put the correctAnswer in a answer array
+            var correctAnswer = [];
+      
+            // and for each available answer...
+            for(letter in currentQuestion.correctAnswer){
+      
+              // ...add an HTML radio button
+              correctAnswer.push(
+                `<label>
+                  <input type="radio" name="question${questionNumber}" value="${letter}">
+                  ${letter} :
+                  ${currentQuestion.correctAnswer[letter]}
+                </label>`
+              );
+            }
+      
+            // add this question and its correctAnswer to the output
+            questionOutput.push(
+              `<h5 id="quiz"> ${currentQuestion.questions} </h5>
+              <div class="correctAnswer"> ${correctAnswer.join('')} </div>`
+            );
+          }
+        );
+      
+        // finally combine our output list into one string of HTML and put it on the page
+        quizDiv.innerHTML = output.join('');
+    }
+    startQuiz();
+    
