@@ -67,5 +67,14 @@ function stop(){
 
 
 //For the questions
+//Define choices, question info, score
+var userAnswer;
+var correctAnswer;
+var currentQuestion;
+var answersCorrect;
+var answersWrong;
+
+var quizDiv = $("#quiz")
+var 
 
 
