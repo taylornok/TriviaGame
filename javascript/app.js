@@ -20,7 +20,7 @@ $("#start").on("click", function() {
                 intervalId = setInterval(decrement, 1000);
                 $("#gameStatus").empty();
                 playAudio();
-                startQuiz();
+                displayTrivia();
                 clockRunning = true;
             }
 
@@ -70,110 +70,166 @@ function stop(){
 //For the questions
 //Define choices, question info, score
 var userAnswer;
-// var correctAnswer = questionArray.correctAnswer[i];
-// var currentQuestion = questionArray[question];
-var answersCorrect;
+var correctAnswer = 0;
+var currentAnswers = 0;
+var currentQuestion = 0;
+var numPosAnswers = 0;
+var gameOver = false;
 var answersWrong;
+var current
 
-var quizDiv = $("#quiz");
+// var quizDiv = $("#quiz");
 
 var questionArray = [
     {
-      question: "Select the primary color.",
-      possAnswer: {
-        a: "Yellow",
-        b: "Magenta",
-        c: "Green",
-        d: "Black"
-      },
-      correctAnswer: "a"
+    question: "Select the primary color.",
+    possAnswer: [
+        "Yellow",
+        "Magenta",
+        "Green",
+        "Black"
+      ],
+    questionAnswer: "a"
     },
     {
-      question: "Which famous orphan had curly red hair",
-      possAnswer: {
-        a: "Oliver Twist",
-        b: "Annie",
-        c: "Violet Baudelaire",
-        d: "Mowgli"
-      },
-      correctAnswer: "b"
+    question: "Which famous orphan had curly red hair",
+        possAnswer: [
+        "Oliver Twist",
+        "Annie",
+        "Violet Baudelaire",
+        "Mowgli"
+        ],
+    
+    questionAnswer: "b"
     },
     {
       question: "What does M.V.E.M.J.S.U.N.P refer to?",
-      possAnswer: {
-        a: "The order of operations in arithmetic",
-        b: "The preparation steps a driver takes before driving",
-        c: "First-aid response steps",
-        d: "Understanding of the solar system circa 1990s"
-      },
-      correctAnswer: "d"
+      possAnswer: [
+        "The order of operations in arithmetic",
+        "The preparation steps a driver takes before driving",
+        "First-aid response steps",
+        "Understanding of the solar system circa 1990s"
+      ],
+      questionAnswer: "d"
 
     },
 
     {
-        question: "What is the capital of the largest state in America (hint: largest in size)",
-        possAnswer: {
-            a: "Sacramento",
-            b: "Austin",
-            c: "Juneau",
-            d: "Tallahassee"
-        },
-        correctAnswer: "c"
+    question: "What is the capital of the largest state in America (hint: largest in size)",
+    possAnswer: [
+        "Sacramento",
+        "Austin",
+        "Juneau",
+        "Tallahassee"
+    ],
+    questionAnswer: "c"
         
     },
 
     {
-        question: "What disease is the focus of oncology? ",
-        possAnswer: {
-          a: "Chronic obstructive pulmonary disease (COPD)",
-          b: "Cancer",
-          c: "Diabetes",
-          d: "Alzheimer’s"
-        },
-        correctAnswer: "b"
+    question: "What disease is the focus of oncology? ",
+    possAnswer: [
+        "Chronic obstructive pulmonary disease (COPD)",
+        "Cancer",
+        "Diabetes",
+        "Alzheimer’s"
+    ],
+        questionAnswer: "b"
         
     }    
 ];
 
 console.log('question array', questionArray);
-console.log(questionArray.question);
+console.log(questionArray[0].question);
 
-function startQuiz(){
+// function startQuiz(){
     
-    var questionOutput = [];
-    // questionOutput = $("#quiz").html(questionOutput)
-    // for each question in whole, we want to take in the current question and correctAnswer
-    questionArray.forEach (
-        (questionArray, correctAnswer) => {
+//     var questionOutput = [];
+//     // questionOutput = $("#quiz").html(questionOutput)
+//     // for each question in whole, we want to take in the current question and questionAnswer
+//     questionArray.forEach (
+//         (questionArray, questionAnswer) => {
     
-        // put the correctAnswer in a answer array
-        var correctAnswer = [];
+//         // put the questionAnswer in a answer array
+//         var questionAnswer = [];
     
-        // and for each available answer...
-        for(letter in questionArray.correctAnswer){
+//         // and for each available answer...
+//         for(letter in questionArray.questionAnswer){
     
-            // ...add an HTML radio button
-            correctAnswer.push(
-            `<label>
-                <input type="radio" name="question${currentQuestion}" value="${letter}">
-                ${letter} :
-                ${currentQuestion.correctAnswer[letter]}
-            </label>`
-            );
-        }
+//             // ...add an HTML radio button
+//             questionAnswer.push(
+//             `<label>
+//                 <input type="radio" name="question${currentQuestion}" value="${letter}">
+//                 ${letter} :
+//                 ${currentQuestion.questionAnswer[letter]}
+//             </label>`
+//             );
+//         }
     
-        // add this question and its correctAnswer to the output
-        questionOutput.push(
-            `<h5 id="quiz"> ${currentQuestion.questions} </h5>
-            <div class="correctAnswer"> ${correctAnswer.join('')} </div>`
-        );
-        }
-    );
+//         // add this question and its questionAnswer to the output
+//         questionOutput.push(
+//             `<h5 id="quiz"> ${currentQuestion.questions} </h5>
+//             <div class="questionAnswer"> ${questionAnswer.join('')} </div>`
+//         );
+//         }
+//     );
     
-    // finally combine our output list into one string of HTML and put it on the page
-    quizDiv.innerHTML = output.join('');
-    }
-    startQuiz();
+    // // finally combine our output list into one string of HTML and put it on the page
+    // quizDiv.innerHTML = output.join('');
+    // }
+    // startQuiz();
 console.log('question array', questionArray);
+
+function possSplit (){
+    // var question = questionArray[currentQuestion].question;
+    var possAnswers = questionArray[currentQuestion].possAnswer;
+    // possAnswers.split();
+    
+}
+
+function displayTrivia() {
+    // for (var i = 0; i < questionArray.length; i++) {
+    //     var splitAnswers = questionArray[i].possAnswer;
+    //     var answerSplit = splitAnswers.split();
+    // }
+    currentQuestion = 0;
+    console.log("inside displayTrivia function");
+    var currentAnswers = 0;
+
+    var question = questionArray[currentQuestion].question;
+    var possAnswers = questionArray[currentQuestion].possAnswer;
+    
+    // question++;
+    
+    // var choicesArr = $("quiz").html(questionArray.possAnswer);
+
+    
+
+    for (var currentQuestion = 0; currentQuestion < questionArray.length; currentQuestion++) {
+        $("#quiz").html(question);
+       
+        
+    }
+    for (var currentAnswers = 0; currentAnswers < possAnswers.length; currentAnswers++) {
+            // possSplit();
+       
+            var answerButtons = $("<button>");
+            answerButtons.text(possAnswers);
+            answerButtons.attr('data-id', currentQuestion);
+            $('#possAnswers').append(answerButtons);
+        
+        
+    }
+    var choice;
+    var numChoices = possAnswers.length
+    for (currentAnswers = 0; currentAnswers < numChoices; currentAnswers++) {
+        choice = questionArray[currentQuestion].possAnswers[currentAnswers]
+        answerButtons.text(possAnswers);
+        answerButtons.attr('data-id', currentQuestion);
+        $('#possAnswers').append(answerButtons);
+        
+    }
+}
+
 
 
