@@ -1,4 +1,3 @@
-
 console.log("timer started");
 
 var audio = new Audio("Jeopardy-theme-song.mp3");
@@ -89,7 +88,7 @@ var questionArray = [
         "Green",
         "Black"
       ],
-    questionAnswer: "a"
+    questionAnswer: "Yellow"
     },
     {
     question: "Which famous orphan had curly red hair",
@@ -100,7 +99,7 @@ var questionArray = [
         "Mowgli"
         ],
     
-    questionAnswer: "b"
+    questionAnswer: "Annie"
     },
     {
       question: "What does M.V.E.M.J.S.U.N.P refer to?",
@@ -110,7 +109,7 @@ var questionArray = [
         "First-aid response steps",
         "Understanding of the solar system circa 1990s"
       ],
-      questionAnswer: "d"
+      questionAnswer: "Understanding of the solar system circa 1990s"
 
     },
 
@@ -122,7 +121,7 @@ var questionArray = [
         "Juneau",
         "Tallahassee"
     ],
-    questionAnswer: "c"
+    questionAnswer: "Juneau"
         
     },
 
@@ -134,7 +133,7 @@ var questionArray = [
         "Diabetes",
         "Alzheimer’s"
     ],
-        questionAnswer: "b"
+        questionAnswer: "Cancer"
         
     }    
 ];
@@ -142,50 +141,15 @@ var questionArray = [
 console.log('question array', questionArray);
 console.log(questionArray[0].question);
 
-// function startQuiz(){
-    
-//     var questionOutput = [];
-//     // questionOutput = $("#quiz").html(questionOutput)
-//     // for each question in whole, we want to take in the current question and questionAnswer
-//     questionArray.forEach (
-//         (questionArray, questionAnswer) => {
-    
-//         // put the questionAnswer in a answer array
-//         var questionAnswer = [];
-    
-//         // and for each available answer...
-//         for(letter in questionArray.questionAnswer){
-    
-//             // ...add an HTML radio button
-//             questionAnswer.push(
-//             `<label>
-//                 <input type="radio" name="question${currentQuestion}" value="${letter}">
-//                 ${letter} :
-//                 ${currentQuestion.questionAnswer[letter]}
-//             </label>`
-//             );
-//         }
-    
-//         // add this question and its questionAnswer to the output
-//         questionOutput.push(
-//             `<h5 id="quiz"> ${currentQuestion.questions} </h5>
-//             <div class="questionAnswer"> ${questionAnswer.join('')} </div>`
-//         );
-//         }
-//     );
-    
-    // // finally combine our output list into one string of HTML and put it on the page
-    // quizDiv.innerHTML = output.join('');
-    // }
-    // startQuiz();
+
 console.log('question array', questionArray);
 
-function possSplit (){
-    // var question = questionArray[currentQuestion].question;
-    var possAnswers = questionArray[currentQuestion].possAnswer;
-    // possAnswers.split();
+// function possSplit (){
+//     // var question = questionArray[currentQuestion].question;
+//     var possAnswers = questionArray[currentQuestion].possAnswer;
+//     // possAnswers.split();
     
-}
+// }
 
 function displayTrivia() {
     // for (var i = 0; i < questionArray.length; i++) {
@@ -211,25 +175,14 @@ function displayTrivia() {
         
     }
     for (var currentAnswers = 0; currentAnswers < possAnswers.length; currentAnswers++) {
-            // possSplit();
+            // var possSplit = possAnswers.split (",");
        
             var answerButtons = $("<button>");
-            answerButtons.text(possAnswers);
+            answerButtons.text(possAnswers[currentAnswers]);
             answerButtons.attr('data-id', currentQuestion);
             $('#possAnswers').append(answerButtons);
         
         
     }
-    var choice;
-    var numChoices = possAnswers.length
-    for (currentAnswers = 0; currentAnswers < numChoices; currentAnswers++) {
-        choice = questionArray[currentQuestion].possAnswers[currentAnswers]
-        answerButtons.text(possAnswers);
-        answerButtons.attr('data-id', currentQuestion);
-        $('#possAnswers').append(answerButtons);
-        
-    }
+
 }
-
-
-
