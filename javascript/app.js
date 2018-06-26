@@ -184,5 +184,31 @@ function displayTrivia() {
         
         
     }
+}
+
+function nextQuestion () {
+   
+    $('#possAnswers').on("click", function () {
+    
+        questionArray.forEach(question => {
+            var correct = questionArray[question].questionAnswer;
+            var buttonText = $('#possAnswers').data;
+            console.log(buttonText);
+
+            console.log("inside nextQuestion");
+            if (buttonText == correct){
+                questionArray ++;
+                $("#results").text("Correct!");
+
+            }
+            else {
+                questionArray ++;
+                $("#results").text("Wrong!");
+            }
+    
+        })
+    })
+    
 
 }
+
