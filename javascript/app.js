@@ -14,7 +14,7 @@ $("#start").on("click", function() {
         //start the game by setting number to desired, then decrease the number by 1 each second
         function startGame() {
             if (!clockRunning && !musicRunning) {
-                number = 100;
+                number = 60;
                 $("#countdownTimer").text(number);
                 intervalId = setInterval(decrement, 1000);
                 $("#gameStatus").empty();
@@ -247,10 +247,10 @@ $("#answerChoices").on("click", "button", function() {
 })
 
 function displayResults(){
-    $(".quizContainer").empty();
-    var results = $("<p>")
-    results.text("You got " + correctAnswer + " out of " + questions.length + " questions right!")
-    $(".quizContainer").append(results);
+    $("#quizContainer").empty();
+    var results = $("<p>");
+    results.html("<h1>You got " + correctAnswer + " out of " + questions.length + " questions right!</h1>");
+    $("#quizContainer").append(results);
 
 }
 

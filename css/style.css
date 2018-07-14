@@ -1,0 +1,11 @@
+body{
+    text-align: center;
+    font-family: 'Knewave', cursive;
+}
+
+#quiz,
+#answerChoices{
+    align-content: center;
+    text-align: center;
+    
+}
