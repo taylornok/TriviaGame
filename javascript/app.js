@@ -64,7 +64,8 @@ function playAudio(){
 function stop(){
     clearInterval(intervalId);
     clockRunning = false;
-    musicRunning = false
+    musicRunning = false;
+    gameOver = true;
 }
 
 
@@ -215,7 +216,7 @@ function displayTrivia() {
     $("#answerChoices").empty();
     for (var i = 0; i < answerChoices.length; i++) {
 
-        var answerButtons = $("<button>");
+        var answerButtons = $("<button> <br>");
         answerButtons.text(answerChoices[i]);
         answerButtons.attr('data-id', round);
         answerButtons.val(answerChoices[i]);
@@ -235,10 +236,17 @@ $("#answerChoices").on("click", "button", function() {
     round++;
     if (round >= questions.length){
         gameOver = true;
+
+    }
+    if (!clockRunning){
+        gameOver = true;
     }
     if (gameOver){
+        // triviaComplete();
         displayResults();
         audio.pause();
+        
+ 
     }else{
         displayTrivia();
         
@@ -249,8 +257,14 @@ $("#answerChoices").on("click", "button", function() {
 function displayResults(){
     $("#quizContainer").empty();
     var results = $("<p>");
-    results.html("<h1>You got " + correctAnswer + " out of " + questions.length + " questions right!</h1>");
+    results.html("<h1>You got " + correctAnswer + " out of " + questions.length + " questions right!</h1> <h4> Reload the page to play again </h4>");
     $("#quizContainer").append(results);
+
+}
+
+function triviaComplete (){
+    $("#quizContainer").empty();
+    $("#answerChoices").empty();
 
 }
 
